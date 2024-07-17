@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import Dropdown from './Dropdown';
 import { DropdownProps } from './Dropdown.types';
@@ -75,4 +75,32 @@ CustomBackground.args = {
     visible: true,
     backgroundColor: 'white',
     disabledBackgroundColor: 'yellow',
+};
+
+export const OpenState = () => {
+    const [visible, setVisible] = useState(true);
+    return (
+        <>
+            <button onClick={() => setVisible(!visible)}>Toggle Dropdown</button>
+            <Dropdown visible={visible} backgroundColor="white" disabledBackgroundColor="lightgrey">
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+            </Dropdown>
+        </>
+    );
+};
+
+export const CloseState = () => {
+    const [visible, setVisible] = useState(false);
+    return (
+        <>
+            <button onClick={() => setVisible(!visible)}>Toggle Dropdown</button>
+            <Dropdown visible={visible} backgroundColor="white" disabledBackgroundColor="lightgrey">
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+            </Dropdown>
+        </>
+    );
 };

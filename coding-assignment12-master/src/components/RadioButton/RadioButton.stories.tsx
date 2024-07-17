@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, Story } from '@storybook/react';
 import RadioButton from './RadioButton';
 import { RadioButtonProps } from './RadioButton.types';
 
@@ -14,7 +14,7 @@ export default {
   },
 } as Meta;
 
-const Template: StoryFn<RadioButtonProps> = (args) => <RadioButton {...args} />;
+const Template: Story<RadioButtonProps> = (args) => <RadioButton {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, Storyfn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import MyButton from './Mybutton';
 import { ButtonProps } from './Mybutton.types';
 
@@ -14,7 +14,7 @@ export default {
     },
 } as Meta;
 
-const Template: Storyfn<ButtonProps> = (args) => <MyButton {...args} />;
+const Template: StoryFn<ButtonProps> = (args) => <MyButton {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
@@ -38,4 +38,21 @@ Invisible.args = {
     disabled: false,
     visible: false,
     disabledColor: 'grey',
+};
+
+export const CustomText = Template.bind({});
+CustomText.args = {
+    children: 'Custom Text',
+    disabled: false,
+    visible: true,
+    disabledColor: 'grey',
+};
+
+export const LargeButton = Template.bind({});
+LargeButton.args = {
+    children: 'Large Button',
+    disabled: false,
+    visible: true,
+    disabledColor: 'grey',
+    style: { fontSize: '20px', padding: '15px 30px' },
 };

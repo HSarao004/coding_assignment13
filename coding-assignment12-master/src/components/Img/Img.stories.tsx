@@ -47,3 +47,23 @@ Hidden.args = {
   disabledColor: 'grey',
   backgroundColor: 'transparent',
 };
+
+export const CustomBackground = Template.bind({});
+CustomBackground.args = {
+  src: 'https://via.placeholder.com/150',
+  alt: 'Placeholder Image',
+  disabled: false,
+  visible: true,
+  disabledColor: 'grey',
+  backgroundColor: 'blue',
+};
+
+export const DisabledWithCustomBackground = Template.bind({});
+DisabledWithCustomBackground.args = {
+  src: 'https://via.placeholder.com/150',
+  alt: 'Placeholder Image',
+  disabled: true,
+  visible: true,
+  disabledColor: 'yellow',
+  backgroundColor: 'blue',
+};
