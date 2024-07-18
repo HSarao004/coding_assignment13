@@ -1,5 +1,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
+import { within, userEvent } from '@storybook/testing-library';
 import Img from './Img';
 import { ImgProps } from './Img.types';
 
@@ -27,6 +28,11 @@ Default.args = {
   disabledColor: 'grey',
   backgroundColor: 'transparent',
 };
+Default.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const imgElement = await canvas.getByAltText('Placeholder Image');
+  await userEvent.hover(imgElement);
+};
 
 export const Disabled = Template.bind({});
 Disabled.args = {
@@ -36,6 +42,11 @@ Disabled.args = {
   visible: true,
   disabledColor: 'grey',
   backgroundColor: 'transparent',
+};
+Disabled.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const imgElement = await canvas.getByAltText('Placeholder Image');
+  await userEvent.hover(imgElement);
 };
 
 export const Hidden = Template.bind({});
@@ -47,6 +58,13 @@ Hidden.args = {
   disabledColor: 'grey',
   backgroundColor: 'transparent',
 };
+Hidden.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const imgElement = await canvas.queryByAltText('Placeholder Image');
+  if (imgElement) {
+    await userEvent.hover(imgElement);
+  }
+};
 
 export const CustomBackground = Template.bind({});
 CustomBackground.args = {
@@ -57,6 +75,11 @@ CustomBackground.args = {
   disabledColor: 'grey',
   backgroundColor: 'blue',
 };
+CustomBackground.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const imgElement = await canvas.getByAltText('Placeholder Image');
+  await userEvent.hover(imgElement);
+};
 
 export const DisabledWithCustomBackground = Template.bind({});
 DisabledWithCustomBackground.args = {
@@ -66,4 +89,9 @@ DisabledWithCustomBackground.args = {
   visible: true,
   disabledColor: 'yellow',
   backgroundColor: 'blue',
+};
+DisabledWithCustomBackground.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const imgElement = await canvas.getByAltText('Placeholder Image');
+  await userEvent.hover(imgElement);
 };
