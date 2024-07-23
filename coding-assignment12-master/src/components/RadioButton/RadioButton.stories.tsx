@@ -1,5 +1,7 @@
 import React from 'react';
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, Story } from '@storybook/react';
+import { within, userEvent } from '@storybook/testing-library';
+import { expect } from '@storybook/jest';
 import RadioButton from './RadioButton';
 import { RadioButtonProps } from './RadioButton.types';
 
@@ -14,7 +16,7 @@ export default {
   },
 } as Meta;
 
-const Template: StoryFn<RadioButtonProps> = (args) => <RadioButton {...args} />;
+const Template: Story<RadioButtonProps> = (args) => <RadioButton {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
@@ -22,6 +24,12 @@ Default.args = {
   visible: true,
   disabledColor: 'grey',
   backgroundColor: 'white',
+};
+Default.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const radioButton = canvas.getByRole('radio');
+  await userEvent.click(radioButton);
+  expect(radioButton).toBeChecked();
 };
 
 export const Disabled = Template.bind({});
@@ -31,6 +39,11 @@ Disabled.args = {
   disabledColor: 'grey',
   backgroundColor: 'white',
 };
+Disabled.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const radioButton = canvas.getByRole('radio');
+  expect(radioButton).toBeDisabled();
+};
 
 export const Hidden = Template.bind({});
 Hidden.args = {
@@ -38,4 +51,9 @@ Hidden.args = {
   visible: false,
   disabledColor: 'grey',
   backgroundColor: 'white',
+};
+Hidden.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  const radioButton = canvas.queryByRole('radio');
+  expect(radioButton).not.toBeInTheDocument();
 };
