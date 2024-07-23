@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test": "jest --silent"
+    "test": "jest --silent",
+    "ci:test":"npm run storybook & sleep 30 && npm run test"
   },
   "dependencies": {
     "jest-environment-jsdom": "^29.7.0",
